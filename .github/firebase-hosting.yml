@@ -1,0 +1,26 @@
+name: Firebase Hosting
+
+on:
+  push:
+    branches:
+      - main  # Здесь указывается ветка, на которую будет реагировать workflow
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Шаг 1: Проверка исходного кода
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Шаг 2: Настройка Firebase CLI
+      - name: Set up Firebase CLI
+        uses: wzieba/Firebase-CLI-action@v2
+        with:
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+
+      # Шаг 3: Деплой на Firebase Hosting
+      - name: Deploy to Firebase Hosting
+        run: |
+          firebase deploy --only hosting
