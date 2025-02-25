@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /html header/media-gallery/
+Disallow: /gallery.html
+Allow: /index.html
